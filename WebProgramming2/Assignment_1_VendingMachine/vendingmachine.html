@@ -1,0 +1,63 @@
+<html>
+<head>
+    <script type="text/javascript" src="vendingmachine.js"></script>
+    <link rel="stylesheet" href="vendingmachine.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+</head>
+<body>
+    <div class="row">
+        <div class="column" style="width: 50%; padding-left: 25px; padding-bottom: 2%; padding-top: 2%">
+            <div class="money-container">
+                <div id="remaining-money-title-text" class="money-text">REMAINING MONEY:</div>
+                <div id="remaining-money-text" class="money-text">1000¥</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column" style="width: 5%; min-width: 205px;">
+            <div class="btn-group-insert-money">
+                <button onclick="insertYen(10)" id="insert-ten-button" class="button">Insert 10 ¥</button>
+                <button onclick="insertYen(50)" id="insert-fifty-button" class="button">Insert 50 ¥</button>
+                <button onclick="insertYen(100)" id="insert-onehundred-button" class="button">Insert 100 ¥</button>
+                <button onclick="insertYen(500)" id="insert-fivehundred-button" class="button">Insert 500 ¥</button>
+                <button onclick="insertYen(1000)" id="insert-thousand-button" class="button">Insert 1000 ¥</button>
+            </div>
+        </div>
+        <div class="column" style="width: 17%; min-width: 250px;">
+            <img class="vending-machine" src="vendingmachine.png" alt="Vending Machine" style="width:350px;height:550px;">
+        </div>
+        <div class="row">
+            <div class="column" style="width: 31%; min-width: 425px; max-width: 450px;">
+                <div class="column" style="min-width: 150px;">
+                    <div class="btn-group-buy-item">
+                        <button onclick="viewProduct('water')" id="view-water-button" class="button">View Water</button>
+                        <button onclick="viewProduct('tea')" id="view-tea-button" class="button">View Tea</button>
+                        <button onclick="viewProduct('coke')" id="view-cola-button" class="button">View Cola</button>
+                        <button onclick="viewProduct('pepsi')" id="view-pepsi-button" class="button">View Pepsi</button>
+                    </div>
+                </div>
+                <div class="column" style="min-width: 150px;">
+                    <div class="btn-group-buy-item">
+                        <button onclick="viewProduct('chips')" id="view-chips-button" class="button">View Chips</button>
+                        <button onclick="viewProduct('candy')" id="view-candy-button" class="button">View Candy</button>
+                        <button onclick="viewProduct('nuts')" id="view-nuts-button" class="button">View Nuts</button>
+                        <button onclick="viewProduct('monster')" id="view-monster-button" class="button">View Monster</button>
+                    </div>
+                </div>
+                <div style="display: inline-block; padding-left: 18%;">
+                    <button onclick="returnChange()" id="return-change-button" style="min-width: 235px;" class="button-return-change">Return Change</button>
+                </div>
+            </div>
+            <div class="column" style="width: 31%; min-width: 400px;">
+                <div id="product-info-container" class="product-container">
+                    <div class="product-text">ABOUT THE ITEM: </div>
+                    <img id="product-image" style="padding-left: 25%; width:250px; height:250px;" src="vendingmachine.png" alt="Product Image">
+                    <div id="product-info-text" class="product-text">Delicious tasty cola that costs 100¥.</div>
+                    <div style="display: flex; justify-content: center;">
+                        <button onclick="buyProduct()" id="product-buy-button" style="min-width: 325px; position: relative;" class="button-purchase-item">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
