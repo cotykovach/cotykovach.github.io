@@ -33,6 +33,7 @@ body{
     text-align: center;
     FONT-WEIGHT: BOLD;
     text-shadow: 3px 3px white;
+    white-space: pre-line;
 }
 
 .money-container {

@@ -47,26 +47,30 @@ function viewProduct(item){
 
 function buyProduct(){
     console.log("buy product clicked") 
+
+    var productTitle = document.getElementById("product-title");
+    var productImage = document.getElementById("product-image");
+    var productText = document.getElementById("product-info");
+    var buyButton = document.getElementById("product-buy-button");
+
     if (currentInsertedYen >= itemCost){
         console.log(currentViewedItem + " was purchased.") 
         currentInsertedYen -= itemCost;
 
-        var productTitle = document.getElementById("product-title");
         productTitle.textContent = "THANK YOU!"
-
-        var productImage = document.getElementById("product-image");
         productImage.src = 'change.png'
-
-        var productText = document.getElementById("product-info");
-        productText.textContent = "Your total change: \n " + currentInsertedYen + "¥."
-
-        var buyButton = document.getElementById("product-buy-button");
+        productText.textContent = "YOUR TOTAL CHANGE:\n " + currentInsertedYen + "¥."
         buyButton.style.visibility = 'hidden'
 
         returnChange()
     }
     else {
         console.log("insufficient funds") 
+
+        productTitle.textContent = "INSUFFCIENT FUNDS!"
+        productImage.src = 'change.png'
+        productText.textContent = "PLEASE INSERT:\n " + (itemCost - currentInsertedYen) + "¥."
+        buyButton.style.visibility = 'hidden'
     }
 }
 
