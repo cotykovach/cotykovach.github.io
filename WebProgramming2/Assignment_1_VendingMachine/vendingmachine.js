@@ -38,6 +38,7 @@ function viewProduct(item){
 
     var productContainer = document.getElementById("product-info-container");
     productContainer.style.visibility = "visible";
+    productContainer.style.backgroundColor = "#99efa794"
 
     var buyButton = document.getElementById("product-buy-button");
     buyButton.style.visibility = 'visible'
@@ -51,6 +52,7 @@ function buyProduct(){
     var productTitle = document.getElementById("product-title");
     var productImage = document.getElementById("product-image");
     var productText = document.getElementById("product-info");
+    var productContainer = document.getElementById("product-info-container");
     var buyButton = document.getElementById("product-buy-button");
 
     if (currentInsertedYen >= itemCost){
@@ -66,7 +68,7 @@ function buyProduct(){
     }
     else {
         console.log("insufficient funds") 
-
+        productContainer.style.backgroundColor = "rgb(255 29 29)"
         productTitle.textContent = "INSUFFCIENT FUNDS!"
         productImage.src = 'change.png'
         productText.textContent = "PLEASE INSERT:\n " + (itemCost - currentInsertedYen) + "¥."
