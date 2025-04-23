@@ -1,40 +1,43 @@
-currentYen = 1000
-currentInsertedYen = 0
-itemCost = 0
-currentViewedItem = ""
+var currentYen = 1000
+var currentInsertedYen = 0
+var productCost = 0
+var currentViewedProduct = ""
 
 function insertYen(insertedYen)
 {
-    console.log("insert yen clicked") 
+    console.log("insert yen clicked: " + insertedYen)
+
     if(currentYen - insertedYen >= 0){
         currentYen = currentYen - insertedYen;
         currentInsertedYen += insertedYen;
-        var x = document.getElementById("remaining-money-text");
-        x.textContent = currentYen + "¥"
+        var remainingMoney = document.getElementById("remaining-money-text");
+        remainingMoney.textContent = currentYen + "¥"
     }
 
     if (currentYen == 0 && currentInsertedYen == 0) {
-        var x = document.getElementById("remaining-money-title-text");
-        var y = document.getElementById("remaining-money-text");
-        x.textContent = "YOU'RE ALL";
-        y.textContent = "OUT OF MONEY!";
+        var remainingMoneyTitle = document.getElementById("remaining-money-title-text");
+        var remainingMoney = document.getElementById("remaining-money-text");
+        remainingMoneyTitle.textContent = "YOU'RE ALL";
+        remainingMoney.textContent = "OUT OF MONEY!";
     }
 }
 
 function returnChange()
 {
-    console.log("return change clicked") 
+    console.log("returned change clicked: " + currentInsertedYen)
+
     if(currentInsertedYen > 0){
         currentYen += currentInsertedYen;
         currentInsertedYen = 0;
-        var x = document.getElementById("remaining-money-text");
-        x.textContent = currentYen + "¥"
+        var remainingMoney = document.getElementById("remaining-money-text");
+        remainingMoney.textContent = currentYen + "¥"
     }
 }
 
-function viewProduct(item){
-    console.log("view product clicked") 
-    currentViewedItem = item
+function viewProduct(product){
+    console.log("view product clicked: " + product) 
+
+    currentViewedProduct = product
 
     var productContainer = document.getElementById("product-info-container");
     productContainer.style.visibility = "visible";
@@ -43,11 +46,11 @@ function viewProduct(item){
     var buyButton = document.getElementById("product-buy-button");
     buyButton.style.visibility = 'visible'
     
-    setItemCostAndLabel(currentViewedItem)
+    setProductCostAndLabel(currentViewedProduct)
 }
 
 function buyProduct(){
-    console.log("buy product clicked") 
+    console.log("buy product clicked: " + currentViewedProduct) 
 
     var productTitle = document.getElementById("product-title");
     var productImage = document.getElementById("product-image");
@@ -55,9 +58,10 @@ function buyProduct(){
     var productContainer = document.getElementById("product-info-container");
     var buyButton = document.getElementById("product-buy-button");
 
-    if (currentInsertedYen >= itemCost){
-        console.log(currentViewedItem + " was purchased.") 
-        currentInsertedYen -= itemCost;
+    if (currentInsertedYen >= productCost){
+        console.log(currentViewedProduct + " was purchased.") 
+        
+        currentInsertedYen -= productCost;
 
         productTitle.textContent = "THANK YOU!"
         productImage.src = 'change.png'
@@ -67,61 +71,62 @@ function buyProduct(){
         returnChange()
     }
     else {
-        console.log("insufficient funds") 
+        console.log("insufficient funds for: " + currentViewedProduct)
+
         productContainer.style.backgroundColor = "rgb(255 29 29)"
         productTitle.textContent = "INSUFFCIENT FUNDS!"
         productImage.src = 'change.png'
-        productText.textContent = "PLEASE INSERT:\n " + (itemCost - currentInsertedYen) + "¥."
+        productText.textContent = "PLEASE INSERT:\n " + (productCost - currentInsertedYen) + "¥."
         buyButton.style.visibility = 'hidden'
     }
 }
 
-function setItemCostAndLabel(item){
+function setProductCostAndLabel(product){
     var productTitle = document.getElementById("product-title");
     productTitle.textContent = "ABOUT THE ITEM:"
 
     var productText = document.getElementById("product-info");
     var productImage = document.getElementById("product-image");
 
-    switch (item) {
+    switch (product) {
         case "water":
-            itemCost = 100;
-            productText.textContent = "This refreshing water will cost you " + itemCost + "¥."
+            productCost = 100;
+            productText.textContent = "This refreshing water will cost you " + productCost + "¥."
             productImage.src = 'water.png'
             break;
         case "tea":
-            itemCost = 110;
-            productText.textContent = "This delicious tea will cost you " + itemCost + "¥."
+            productCost = 110;
+            productText.textContent = "This delicious tea will cost you " + productCost + "¥."
             productImage.src = 'tea.png'
             break;
         case "coke":
-            itemCost = 120;
-            productText.textContent = "This bubbly soda will cost you " + itemCost + "¥."
+            productCost = 120;
+            productText.textContent = "This bubbly soda will cost you " + productCost + "¥."
             productImage.src = 'coke.png'
             break;
         case "pepsi":
-            itemCost = 120;
-            productText.textContent = "This fizzy pop will cost you " + itemCost + "¥."
+            productCost = 120;
+            productText.textContent = "This fizzy pop will cost you " + productCost + "¥."
             productImage.src = 'pepsi.png'
             break;
         case "candy":
-            itemCost = 150;
-            productText.textContent = "This sweet candy will cost you " + itemCost + "¥."
+            productCost = 150;
+            productText.textContent = "This sweet candy will cost you " + productCost + "¥."
             productImage.src = 'candy.png'
             break;
         case "chips":
-            itemCost = 180;
-            productText.textContent = "These fancy chips will cost you " + itemCost + "¥."
+            productCost = 180;
+            productText.textContent = "These fancy chips will cost you " + productCost + "¥."
             productImage.src = 'chips.png'
             break;
         case "nuts":
-            itemCost = 200;
-            productText.textContent = "These healthy nuts will cost you " + itemCost + "¥."
+            productCost = 200;
+            productText.textContent = "These healthy nuts will cost you " + productCost + "¥."
             productImage.src = 'nuts.png'
             break;
         case "monster":
-            itemCost = 220;
-            productText.textContent = "This crazy liquid will cost you " + itemCost + "¥."
+            productCost = 220;
+            productText.textContent = "This crazy liquid will cost you " + productCost + "¥."
             productImage.src = 'monster.png'
             break;
       }
